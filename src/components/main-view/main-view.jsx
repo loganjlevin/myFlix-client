@@ -67,7 +67,7 @@ const MainView = () => {
     },
   ]);
 
-  if (movies === null) {
+  if (movies.length === 0) {
     return <div>Movie list is empty!</div>;
   }
 
