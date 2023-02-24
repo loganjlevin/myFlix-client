@@ -27308,16 +27308,49 @@ const MainView = ()=>{
         lineNumber: 21,
         columnNumber: 12
     }, undefined);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieViewDefault.default), {
-        movie: selectedMovie,
-        onBackClick: ()=>{
-            setSelectedMovie(null);
-        }
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 26,
-        columnNumber: 7
-    }, undefined);
+    if (selectedMovie) {
+        let similarMovies = movies.filter((movie)=>{
+            return movie.Genre.Name === selectedMovie.Genre.Name && movie.Title !== selectedMovie.Title;
+        });
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieViewDefault.default), {
+                    movie: selectedMovie,
+                    onBackClick: ()=>{
+                        setSelectedMovie(null);
+                    }
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 33,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: "Similar Movies"
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 39,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 40,
+                    columnNumber: 9
+                }, undefined),
+                similarMovies.map((movie)=>{
+                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
+                        movie: movie,
+                        onMovieClick: ()=>{
+                            setSelectedMovie(movie);
+                        }
+                    }, movie.id, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 43,
+                        columnNumber: 13
+                    }, undefined);
+                })
+            ]
+        }, void 0, true);
+    }
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: movies.map((movie)=>{
             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
@@ -27327,13 +27360,13 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 38,
+                lineNumber: 59,
                 columnNumber: 11
             }, undefined);
         })
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 35,
+        lineNumber: 56,
         columnNumber: 5
     }, undefined);
 };
@@ -27383,8 +27416,8 @@ MovieCard.propTypes = {
         Director: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired,
             Bio: (0, _propTypesDefault.default).string,
-            Birth: (0, _propTypesDefault.default).number,
-            Death: (0, _propTypesDefault.default).number
+            Birth: (0, _propTypesDefault.default).string,
+            Death: (0, _propTypesDefault.default).string
         }),
         ImagePath: (0, _propTypesDefault.default).string,
         Featured: (0, _propTypesDefault.default).bool
@@ -28322,8 +28355,8 @@ MovieView.propTypes = {
         Director: (0, _propTypesDefault.default).shape({
             Name: (0, _propTypesDefault.default).string.isRequired,
             Bio: (0, _propTypesDefault.default).string,
-            Birth: (0, _propTypesDefault.default).number,
-            Death: (0, _propTypesDefault.default).number
+            Birth: (0, _propTypesDefault.default).string,
+            Death: (0, _propTypesDefault.default).string
         }).isRequired,
         ImagePath: (0, _propTypesDefault.default).string.isRequired,
         Featured: (0, _propTypesDefault.default).bool

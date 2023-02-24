@@ -22,13 +22,34 @@ const MainView = () => {
   }
 
   if (selectedMovie) {
+    let similarMovies = movies.filter((movie) => {
+      return (
+        movie.Genre.Name === selectedMovie.Genre.Name &&
+        movie.Title !== selectedMovie.Title
+      );
+    });
     return (
-      <MovieView
-        movie={selectedMovie}
-        onBackClick={() => {
-          setSelectedMovie(null);
-        }}
-      />
+      <>
+        <MovieView
+          movie={selectedMovie}
+          onBackClick={() => {
+            setSelectedMovie(null);
+          }}
+        />
+        <h2>Similar Movies</h2>
+        <hr />
+        {similarMovies.map((movie) => {
+          return (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onMovieClick={() => {
+                setSelectedMovie(movie);
+              }}
+            />
+          );
+        })}
+      </>
     );
   }
   return (
