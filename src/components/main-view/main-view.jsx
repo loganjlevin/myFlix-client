@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import MovieCard from '../movie-card/movie-card';
-import MovieView from '../movie-view/movie-view';
+import { useState, useEffect } from "react";
+import MovieCard from "../movie-card/movie-card";
+import MovieView from "../movie-view/movie-view";
 
 const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    fetch('https://myflix-d2kt.onrender.com/movies')
+    fetch("https://myflix-d2kt.onrender.com/movies")
       .then((response) => response.json())
       .then((data) => {
         setMovies(data);
@@ -41,7 +41,7 @@ const MainView = () => {
         {similarMovies.map((movie) => {
           return (
             <MovieCard
-              key={movie.id}
+              key={movie._id}
               movie={movie}
               onMovieClick={() => {
                 setSelectedMovie(movie);
@@ -57,7 +57,7 @@ const MainView = () => {
       {movies.map((movie) => {
         return (
           <MovieCard
-            key={movie.id}
+            key={movie._id}
             movie={movie}
             onMovieClick={() => {
               setSelectedMovie(movie);
