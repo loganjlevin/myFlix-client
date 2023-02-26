@@ -142,9 +142,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"1xC6H":[function(require,module,exports) {
-var Refresh = require("45011cfb552ebcd7");
-var ErrorOverlay = require("7eccd42e334bbb2c");
+})({"lbIvN":[function(require,module,exports) {
+var Refresh = require("d6d3b4900cbd2318");
+var ErrorOverlay = require("c9bb580f949d8493");
 Refresh.injectIntoGlobalHook(window);
 window.$RefreshReg$ = function() {};
 window.$RefreshSig$ = function() {
@@ -163,11 +163,11 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"45011cfb552ebcd7":"786KC","7eccd42e334bbb2c":"1dldy"}],"786KC":[function(require,module,exports) {
+},{"d6d3b4900cbd2318":"aRHAO","c9bb580f949d8493":"9dVnd"}],"aRHAO":[function(require,module,exports) {
 "use strict";
-module.exports = require("3e7236684833ad27");
+module.exports = require("b32ac45e5e55654b");
 
-},{"3e7236684833ad27":"hdge7"}],"hdge7":[function(require,module,exports) {
+},{"b32ac45e5e55654b":"gQWOy"}],"gQWOy":[function(require,module,exports) {
 /** @license React v0.9.0
  * react-refresh-runtime.development.js
  *
@@ -627,8 +627,8 @@ module.exports = require("3e7236684833ad27");
     exports.setSignature = setSignature;
 })();
 
-},{}],"1dldy":[function(require,module,exports) {
-var process = require("c46cbb28bd9b92c3");
+},{}],"9dVnd":[function(require,module,exports) {
+var process = require("e9768645798246aa");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2358,7 +2358,7 @@ var process = require("c46cbb28bd9b92c3");
     ]);
 });
 
-},{"c46cbb28bd9b92c3":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"e9768645798246aa":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -2503,7 +2503,7 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"7a1Sg":[function(require,module,exports) {
+},{}],"cxnEi":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -2956,11 +2956,11 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./components/main-view/main-view":"4gflv","./index.scss":"lJZlQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"j6CKl","./components/main-view/main-view":"4gflv","@parcel/transformer-js/src/esmodule-helpers.js":"kn0Xd"}],"iTorj":[function(require,module,exports) {
 "use strict";
-module.exports = require("1dd9d940ceac749f");
+module.exports = require("46e8d9b1a3206aba");
 
-},{"1dd9d940ceac749f":"48uCM"}],"48uCM":[function(require,module,exports) {
+},{"46e8d9b1a3206aba":"48uCM"}],"48uCM":[function(require,module,exports) {
 /**
  * @license React
  * react-jsx-dev-runtime.development.js
@@ -2972,7 +2972,7 @@ module.exports = require("1dd9d940ceac749f");
  */ "use strict";
 (function() {
     "use strict";
-    var React = require("c2af870cb5fafbad");
+    var React = require("db8fbd8d024a16ef");
     // ATTENTION
     // When adding new symbols to this file,
     // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
@@ -3791,11 +3791,11 @@ module.exports = require("1dd9d940ceac749f");
     exports.jsxDEV = jsxDEV$1;
 })();
 
-},{"c2af870cb5fafbad":"21dqq"}],"21dqq":[function(require,module,exports) {
+},{"db8fbd8d024a16ef":"21dqq"}],"21dqq":[function(require,module,exports) {
 "use strict";
-module.exports = require("201997ed84db9df1");
+module.exports = require("23659f34a6e75066");
 
-},{"201997ed84db9df1":"6YvXz"}],"6YvXz":[function(require,module,exports) {
+},{"23659f34a6e75066":"6YvXz"}],"6YvXz":[function(require,module,exports) {
 /**
  * @license React
  * react.development.js
@@ -5663,7 +5663,7 @@ module.exports = require("201997ed84db9df1");
 
 },{}],"lOjBx":[function(require,module,exports) {
 "use strict";
-var m = require("9e96941e7af32ae9");
+var m = require("3e81584a1407cf3");
 var i = m.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 exports.createRoot = function(c, o) {
     i.usingClientEntryPoint = true;
@@ -5682,7 +5682,7 @@ exports.hydrateRoot = function(c, h, o) {
     }
 };
 
-},{"9e96941e7af32ae9":"j6uA9"}],"j6uA9":[function(require,module,exports) {
+},{"3e81584a1407cf3":"j6uA9"}],"j6uA9":[function(require,module,exports) {
 "use strict";
 function checkDCE() {
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === "undefined" || typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== "function") return;
@@ -5696,9 +5696,9 @@ function checkDCE() {
     // a false positive.
     throw new Error("^_^");
 }
-module.exports = require("80652958eed673c7");
+module.exports = require("fcc10f256cf16d60");
 
-},{"80652958eed673c7":"3iA9v"}],"3iA9v":[function(require,module,exports) {
+},{"fcc10f256cf16d60":"3iA9v"}],"3iA9v":[function(require,module,exports) {
 /**
  * @license React
  * react-dom.development.js
@@ -5711,8 +5711,8 @@ module.exports = require("80652958eed673c7");
 (function() {
     "use strict";
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("9468320c43660af4");
-    var Scheduler = require("4dfa1ea82b8b16e3");
+    var React = require("a5a11a5c621541cf");
+    var Scheduler = require("42c68693c4bce1c9");
     var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
     var suppressWarning = false;
     function setSuppressWarning(newSuppressWarning) {
@@ -26683,11 +26683,11 @@ module.exports = require("80652958eed673c7");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{"9468320c43660af4":"21dqq","4dfa1ea82b8b16e3":"juvHo"}],"juvHo":[function(require,module,exports) {
+},{"a5a11a5c621541cf":"21dqq","42c68693c4bce1c9":"juvHo"}],"juvHo":[function(require,module,exports) {
 "use strict";
-module.exports = require("ba35d9072cc307a2");
+module.exports = require("f044119132148729");
 
-},{"ba35d9072cc307a2":"RqdIf"}],"RqdIf":[function(require,module,exports) {
+},{"f044119132148729":"RqdIf"}],"RqdIf":[function(require,module,exports) {
 /**
  * @license React
  * scheduler.development.js
@@ -27141,198 +27141,9 @@ module.exports = require("ba35d9072cc307a2");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"4gflv":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$f7a6.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _movieCard = require("../movie-card/movie-card");
-var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
-var _movieView = require("../movie-view/movie-view");
-var _movieViewDefault = parcelHelpers.interopDefault(_movieView);
-var _s = $RefreshSig$();
-const MainView = ()=>{
-    _s();
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [movies, setMovies] = (0, _react.useState)([]);
-    (0, _react.useEffect)(()=>{
-        fetch("https://myflix-d2kt.onrender.com/movies").then((response)=>response.json()).then((data)=>{
-            setMovies(data);
-        }).catch((error)=>{
-            console.error(error);
-        });
-    }, []);
-    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "Movie list is empty!"
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 21,
-        columnNumber: 12
-    }, undefined);
-    if (selectedMovie) {
-        let similarMovies = movies.filter((movie)=>{
-            return movie.Genre.Name === selectedMovie.Genre.Name && movie.Title !== selectedMovie.Title;
-        });
-        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieViewDefault.default), {
-                    movie: selectedMovie,
-                    onBackClick: ()=>{
-                        setSelectedMovie(null);
-                    }
-                }, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 33,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                    children: "Similar Movies"
-                }, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 39,
-                    columnNumber: 9
-                }, undefined),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                    fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 40,
-                    columnNumber: 9
-                }, undefined),
-                similarMovies.map((movie)=>{
-                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
-                        movie: movie,
-                        onMovieClick: ()=>{
-                            setSelectedMovie(movie);
-                        }
-                    }, movie._id, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 43,
-                        columnNumber: 13
-                    }, undefined);
-                })
-            ]
-        }, void 0, true);
-    }
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>{
-            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
-                movie: movie,
-                onMovieClick: ()=>{
-                    setSelectedMovie(movie);
-                }
-            }, movie._id, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 59,
-                columnNumber: 11
-            }, undefined);
-        })
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 56,
-        columnNumber: 5
-    }, undefined);
-};
-_s(MainView, "gZKazS9F3WzmdZHbA0prck3jems=");
-_c = MainView;
-exports.default = MainView;
-var _c;
-$RefreshReg$(_c, "MainView");
-
-  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$67b2.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-const MovieCard = ({ movie , onMovieClick  })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        onClick: onMovieClick,
-        children: movie.Title
-    }, void 0, false, {
-        fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 4,
-        columnNumber: 10
-    }, undefined);
-};
-_c = MovieCard;
-MovieCard.propTypes = {
-    movie: (0, _propTypesDefault.default).shape({
-        _id: (0, _propTypesDefault.default).string.isRequired,
-        Title: (0, _propTypesDefault.default).string.isRequired,
-        Description: (0, _propTypesDefault.default).string,
-        Genre: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired,
-            Description: (0, _propTypesDefault.default).string
-        }),
-        Director: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string.isRequired,
-            Bio: (0, _propTypesDefault.default).string,
-            Birth: (0, _propTypesDefault.default).string,
-            Death: (0, _propTypesDefault.default).string
-        }),
-        ImagePath: (0, _propTypesDefault.default).string,
-        Featured: (0, _propTypesDefault.default).bool
-    }),
-    onMovieClick: (0, _propTypesDefault.default).func.isRequired
-};
-exports.default = MovieCard;
-var _c;
-$RefreshReg$(_c, "MovieCard");
-
-  $parcel$ReactRefreshHelpers$67b2.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"km3Ru":[function(require,module,exports) {
+},{}],"lJZlQ":[function() {},{}],"j6CKl":[function(require,module,exports) {
 "use strict";
-var Refresh = require("ed92bf5cdd995c43");
+var Refresh = require("69e9a5f23efb674c");
 function debounce(func, delay) {
     {
         let timeout = undefined;
@@ -27463,23 +27274,212 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"ed92bf5cdd995c43":"786KC"}],"7wKI2":[function(require,module,exports) {
+},{"69e9a5f23efb674c":"aRHAO"}],"4gflv":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f7a6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _movieCard = require("../movie-card/movie-card");
+var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
+var _movieView = require("../movie-view/movie-view");
+var _movieViewDefault = parcelHelpers.interopDefault(_movieView);
+var _s = $RefreshSig$();
+const MainView = ()=>{
+    _s();
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        fetch("https://myflix-d2kt.onrender.com/movies").then((response)=>response.json()).then((data)=>{
+            setMovies(data);
+        }).catch((error)=>{
+            console.error(error);
+        });
+    }, []);
+    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "Movie list is empty!"
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 21,
+        columnNumber: 12
+    }, undefined);
+    if (selectedMovie) {
+        let similarMovies = movies.filter((movie)=>{
+            return movie.Genre.Name === selectedMovie.Genre.Name && movie.Title !== selectedMovie.Title;
+        });
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieViewDefault.default), {
+                    movie: selectedMovie,
+                    onBackClick: ()=>{
+                        setSelectedMovie(null);
+                    }
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 33,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                    children: "Similar Movies"
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 39,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 40,
+                    columnNumber: 9
+                }, undefined),
+                similarMovies.map((movie)=>{
+                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
+                        movie: movie,
+                        onMovieClick: ()=>{
+                            setSelectedMovie(movie);
+                        }
+                    }, movie._id, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 43,
+                        columnNumber: 13
+                    }, undefined);
+                })
+            ]
+        }, void 0, true);
+    }
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: movies.map((movie)=>{
+            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
+                movie: movie,
+                onMovieClick: ()=>{
+                    setSelectedMovie(movie);
+                }
+            }, movie._id, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 59,
+                columnNumber: 11
+            }, undefined);
+        })
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 56,
+        columnNumber: 5
+    }, undefined);
+};
+_s(MainView, "gZKazS9F3WzmdZHbA0prck3jems=");
+_c = MainView;
+exports.default = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
+
+  $parcel$ReactRefreshHelpers$f7a6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"kn0Xd","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"j6CKl"}],"bwuIu":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$67b2.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+const MovieCard = ({ movie , onMovieClick  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        onClick: onMovieClick,
+        children: movie.Title
+    }, void 0, false, {
+        fileName: "src/components/movie-card/movie-card.jsx",
+        lineNumber: 4,
+        columnNumber: 10
+    }, undefined);
+};
+_c = MovieCard;
+MovieCard.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        _id: (0, _propTypesDefault.default).string.isRequired,
+        Title: (0, _propTypesDefault.default).string.isRequired,
+        Description: (0, _propTypesDefault.default).string,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Description: (0, _propTypesDefault.default).string
+        }),
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string.isRequired,
+            Bio: (0, _propTypesDefault.default).string,
+            Birth: (0, _propTypesDefault.default).string,
+            Death: (0, _propTypesDefault.default).string
+        }),
+        ImagePath: (0, _propTypesDefault.default).string,
+        Featured: (0, _propTypesDefault.default).bool
+    }),
+    onMovieClick: (0, _propTypesDefault.default).func.isRequired
+};
+exports.default = MovieCard;
+var _c;
+$RefreshReg$(_c, "MovieCard");
+
+  $parcel$ReactRefreshHelpers$67b2.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"j6CKl","@parcel/transformer-js/src/esmodule-helpers.js":"kn0Xd","prop-types":"7wKI2"}],"kn0Xd":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */ var ReactIs = require("5b9a7b02d2f90b1b");
+ */ var ReactIs = require("5b1b64c2039c05c9");
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
 var throwOnDirectAccess = true;
-module.exports = require("d49458958ce72542")(ReactIs.isElement, throwOnDirectAccess);
+module.exports = require("c181cf22802457c4")(ReactIs.isElement, throwOnDirectAccess);
 
-},{"5b9a7b02d2f90b1b":"7EuwB","d49458958ce72542":"bBUgD"}],"7EuwB":[function(require,module,exports) {
+},{"5b1b64c2039c05c9":"7EuwB","c181cf22802457c4":"bBUgD"}],"7EuwB":[function(require,module,exports) {
 "use strict";
-module.exports = require("c51382df62672288");
+module.exports = require("a64cb74fd6f0dca2");
 
-},{"c51382df62672288":"5DsXl"}],"5DsXl":[function(require,module,exports) {
+},{"a64cb74fd6f0dca2":"5DsXl"}],"5DsXl":[function(require,module,exports) {
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -27643,11 +27643,11 @@ module.exports = require("c51382df62672288");
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */ "use strict";
-var ReactIs = require("d345c7b5fcf0b4bf");
-var assign = require("abe30b5ca30dccef");
-var ReactPropTypesSecret = require("29544e7131fd6fca");
-var has = require("b4d3ce38af7455a8");
-var checkPropTypes = require("80767e053b385029");
+var ReactIs = require("2586acbd98bce6d7");
+var assign = require("c36dc71d94452428");
+var ReactPropTypesSecret = require("f8edd53251f8744c");
+var has = require("80f63246a60b507c");
+var checkPropTypes = require("7e3b101968faf534");
 var printWarning = function() {};
 printWarning = function(text) {
     var message = "Warning: " + text;
@@ -28074,7 +28074,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
     return ReactPropTypes;
 };
 
-},{"d345c7b5fcf0b4bf":"7EuwB","abe30b5ca30dccef":"7OXxh","29544e7131fd6fca":"jZTZJ","b4d3ce38af7455a8":"fqKuf","80767e053b385029":"5VwyJ"}],"7OXxh":[function(require,module,exports) {
+},{"2586acbd98bce6d7":"7EuwB","c36dc71d94452428":"7OXxh","f8edd53251f8744c":"jZTZJ","80f63246a60b507c":"fqKuf","7e3b101968faf534":"5VwyJ"}],"7OXxh":[function(require,module,exports) {
 /*
 object-assign
 (c) Sindre Sorhus
@@ -28150,9 +28150,9 @@ module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
  * LICENSE file in the root directory of this source tree.
  */ "use strict";
 var printWarning = function() {};
-var ReactPropTypesSecret = require("f25a92f0591e1834");
+var ReactPropTypesSecret = require("1c087f458279c10f");
 var loggedTypeFailures = {};
-var has = require("ff76109405153cb4");
+var has = require("7945aa0429ad241f");
 printWarning = function(text) {
     var message = "Warning: " + text;
     if (typeof console !== "undefined") console.error(message);
@@ -28210,7 +28210,7 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"f25a92f0591e1834":"jZTZJ","ff76109405153cb4":"fqKuf"}],"ggaUx":[function(require,module,exports) {
+},{"1c087f458279c10f":"jZTZJ","7945aa0429ad241f":"fqKuf"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -28372,6 +28372,6 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2"}],"lJZlQ":[function() {},{}]},["1xC6H","7a1Sg","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"kn0Xd","react/jsx-dev-runtime":"iTorj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"j6CKl","prop-types":"7wKI2"}]},["lbIvN","cxnEi","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
