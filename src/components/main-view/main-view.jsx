@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import MovieCard from "../movie-card/movie-card";
-import MovieView from "../movie-view/movie-view";
-import LoginView from "../login-view/login-view";
-import SignupView from "../signup-view/signup-view";
+import { useState, useEffect } from 'react';
+import MovieCard from '../movie-card/movie-card';
+import MovieView from '../movie-view/movie-view';
+import LoginView from '../login-view/login-view';
+import SignupView from '../signup-view/signup-view';
 import {
   Row,
   Col,
@@ -11,11 +11,11 @@ import {
   Nav,
   Container,
   Form,
-} from "react-bootstrap";
+} from 'react-bootstrap';
 
 const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = JSON.parse(localStorage.getItem("token"));
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const storedToken = JSON.parse(localStorage.getItem('token'));
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
@@ -26,7 +26,7 @@ const MainView = () => {
     if (!token) {
       return;
     }
-    fetch("https://myflix-d2kt.onrender.com/movies", {
+    fetch('https://myflix-d2kt.onrender.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
@@ -63,13 +63,23 @@ const MainView = () => {
 
   return (
     <>
+      {/* NAVBAR */}
       <Navbar bg="primary" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand href="#home">myFlix</Navbar.Brand>
+          <Navbar.Brand href="#home">MyFlix</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Form inline>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    setSelectedMovie(null);
+                  }}
+                >
+                  Home
+                </Button>
+              </Form>
             </Nav>
             {user ? (
               <Form inline>
@@ -91,6 +101,7 @@ const MainView = () => {
         </Container>
       </Navbar>
       <Row className="justify-content-md-center">
+        {/* LOGIN VIEW */}
         {!user ? (
           <Col md={5}>
             <LoginView
@@ -99,10 +110,12 @@ const MainView = () => {
                 setToken(token);
               }}
             />
+            {/* SINGUP VIEW */}
             <SignupView />
           </Col>
         ) : selectedMovie ? (
           <>
+            {/* MOVIE VIEW */}
             <Col md={8}>
               <MovieView
                 movie={selectedMovie}
@@ -114,7 +127,7 @@ const MainView = () => {
             <Col md={12} className="mt-5 text-white">
               <h2>Similar Movies</h2>
             </Col>
-
+            {/* SIMILAR MOVIES LIST */}
             {similarMovies.map((movie) => {
               return (
                 <Col className="mb-4" key={movie._id} md={3}>
@@ -133,9 +146,10 @@ const MainView = () => {
           <div>Movie list is empty!</div>
         ) : (
           <>
+            {/* MOVIE LIST */}
             {movies.map((movie) => {
               return (
-                <Col className="mt-3 mb-3" key={movie._id} md={3}>
+                <Col className="my-3" key={movie._id} md={3}>
                   <MovieCard
                     movie={movie}
                     onMovieClick={() => {

@@ -27346,17 +27346,17 @@ const MainView = ()=>{
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
                             href: "#home",
-                            children: "myFlix"
+                            children: "MyFlix"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 68,
+                            lineNumber: 69,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Toggle, {
                             "aria-controls": "basic-navbar-nav"
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 69,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
@@ -27364,17 +27364,27 @@ const MainView = ()=>{
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
                                     className: "me-auto",
-                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                        href: "#home",
-                                        children: "Home"
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+                                        inline: true,
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                            variant: "primary",
+                                            onClick: ()=>{
+                                                setSelectedMovie(null);
+                                            },
+                                            children: "Home"
+                                        }, void 0, false, {
+                                            fileName: "src/components/main-view/main-view.jsx",
+                                            lineNumber: 74,
+                                            columnNumber: 17
+                                        }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 72,
+                                        lineNumber: 73,
                                         columnNumber: 15
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 71,
+                                    lineNumber: 72,
                                     columnNumber: 13
                                 }, undefined),
                                 user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -27389,29 +27399,29 @@ const MainView = ()=>{
                                         children: "Logout"
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 76,
+                                        lineNumber: 86,
                                         columnNumber: 17
                                     }, undefined)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 75,
+                                    lineNumber: 85,
                                     columnNumber: 15
                                 }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {}, void 0, false)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 70,
+                            lineNumber: 71,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 67,
+                    lineNumber: 68,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 66,
+                lineNumber: 67,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
@@ -27426,18 +27436,18 @@ const MainView = ()=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 96,
+                            lineNumber: 107,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _signupViewDefault.default), {}, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 102,
+                            lineNumber: 114,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 95,
+                    lineNumber: 106,
                     columnNumber: 11
                 }, undefined) : selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                     children: [
@@ -27450,12 +27460,12 @@ const MainView = ()=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 107,
+                                lineNumber: 120,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 106,
+                            lineNumber: 119,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -27465,12 +27475,12 @@ const MainView = ()=>{
                                 children: "Similar Movies"
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 115,
+                                lineNumber: 128,
                                 columnNumber: 15
                             }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 114,
+                            lineNumber: 127,
                             columnNumber: 13
                         }, undefined),
                         similarMovies.map((movie)=>{
@@ -27484,12 +27494,12 @@ const MainView = ()=>{
                                     }
                                 }, movie._id, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 121,
+                                    lineNumber: 134,
                                     columnNumber: 19
                                 }, undefined)
                             }, movie._id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 120,
+                                lineNumber: 133,
                                 columnNumber: 17
                             }, undefined);
                         })
@@ -27498,13 +27508,13 @@ const MainView = ()=>{
                     children: "Movie list is empty!"
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 133,
+                    lineNumber: 146,
                     columnNumber: 11
                 }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                     children: [
                         movies.map((movie)=>{
                             return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                className: "mt-3 mb-3",
+                                className: "my-3",
                                 md: 3,
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCardDefault.default), {
                                     movie: movie,
@@ -27513,12 +27523,12 @@ const MainView = ()=>{
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 139,
+                                    lineNumber: 153,
                                     columnNumber: 19
                                 }, undefined)
                             }, movie._id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 138,
+                                lineNumber: 152,
                                 columnNumber: 17
                             }, undefined);
                         }),
@@ -27526,14 +27536,14 @@ const MainView = ()=>{
                             md: 12
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 148,
+                            lineNumber: 162,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 93,
+                lineNumber: 103,
                 columnNumber: 7
             }, undefined)
         ]
