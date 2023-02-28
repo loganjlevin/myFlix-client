@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import { useState } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 
 const SignupView = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [birthday, setBirthday] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,24 +17,24 @@ const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch("https://myflix-d2kt.onrender.com/users", {
-      method: "POST",
+    fetch('https://myflix-d2kt.onrender.com/users', {
+      method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     }).then((response) => {
       if (response.ok) {
-        alert("Signup successful");
+        alert('Signup successful');
         window.location.reload();
       } else {
-        alert("Signup failed");
+        alert('Signup failed');
       }
     });
   };
 
   return (
-    <Container className="bg-secondary mt-5 mb-3 text-white rounded p-3">
+    <Container className="bg-secondary mt-3 mb-3 text-white rounded p-3">
       <Form onSubmit={handleSubmit}>
         Signup
         <Form.Group controlId="formUsername" className="mb-3">

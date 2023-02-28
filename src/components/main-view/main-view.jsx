@@ -3,24 +3,18 @@ import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import LoginView from '../login-view/login-view';
 import SignupView from '../signup-view/signup-view';
-import {
-  Row,
-  Col,
-  Button,
-  Navbar,
-  Nav,
-  Container,
-  Form,
-} from 'react-bootstrap';
+import NavigationBar from '../navigation-bar/navigation-bar';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
+import { Row, Col } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = JSON.parse(localStorage.getItem('token'));
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
-  const [similarMovies, setSimilarMovies] = useState([]);
 
   useEffect(() => {
     if (!token) {
@@ -48,122 +42,94 @@ const MainView = () => {
       });
   }, [token]);
 
-  useEffect(() => {
-    if (selectedMovie) {
-      setSimilarMovies(
-        movies.filter((movie) => {
-          return (
-            movie.Genre.Name === selectedMovie.Genre.Name &&
-            movie.Title !== selectedMovie.Title
-          );
-        })
-      );
-    }
-  }, [selectedMovie]);
-
   return (
-    <>
-      {/* NAVBAR */}
-      <Navbar bg="primary" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Brand href="#home">MyFlix</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Form inline>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    setSelectedMovie(null);
-                  }}
-                >
-                  Home
-                </Button>
-              </Form>
-            </Nav>
-            {user ? (
-              <Form inline>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    setUser(null);
-                    setToken(null);
-                    localStorage.clear();
-                  }}
-                >
-                  Logout
-                </Button>
-              </Form>
-            ) : (
-              <></>
-            )}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+    <BrowserRouter>
+      <ScrollToTop />
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+      />
+
       <Row className="justify-content-md-center">
-        {/* LOGIN VIEW */}
-        {!user ? (
-          <Col md={5}>
-            <LoginView
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }}
-            />
-            {/* SINGUP VIEW */}
-            <SignupView />
-          </Col>
-        ) : selectedMovie ? (
-          <>
-            {/* MOVIE VIEW */}
-            <Col md={8}>
-              <MovieView
-                movie={selectedMovie}
-                onBackClick={() => {
-                  setSelectedMovie(null);
-                }}
-              />
-            </Col>
-            <Col md={12} className="mt-5 text-white">
-              <h2>Similar Movies</h2>
-            </Col>
-            {/* SIMILAR MOVIES LIST */}
-            {similarMovies.map((movie) => {
-              return (
-                <Col className="mb-4" key={movie._id} md={3}>
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    onMovieClick={() => {
-                      setSelectedMovie(movie);
-                    }}
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <MovieView
+                    movies={movies}
+                    similarMovies={similarMovies}
+                    setSimilarMovies={setSimilarMovies}
                   />
-                </Col>
-              );
-            })}
-          </>
-        ) : movies.length === 0 ? (
-          <div>Movie list is empty!</div>
-        ) : (
-          <>
-            {/* MOVIE LIST */}
-            {movies.map((movie) => {
-              return (
-                <Col className="my-3" key={movie._id} md={3}>
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={() => {
-                      setSelectedMovie(movie);
-                    }}
-                  />
-                </Col>
-              );
-            })}
-            <Col md={12}></Col>
-          </>
-        )}
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    {movies.map((movie) => (
+                      <Col className="my-3" key={movie._id} md={3}>
+                        <MovieCard movie={movie} />
+                      </Col>
+                    ))}
+                  </>
+                )}
+              </>
+            }
+          />
+        </Routes>
       </Row>
-    </>
+    </BrowserRouter>
   );
 };
 
