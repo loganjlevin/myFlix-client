@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import PropTypes from "prop-types";
+import { Card } from "react-bootstrap";
 
 const MovieCard = ({ movie, onMovieClick }) => {
   return (
-    <Card className="h-100" onClick={onMovieClick}>
+    <Card className="h-100 bg-secondary text-white" onClick={onMovieClick}>
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
