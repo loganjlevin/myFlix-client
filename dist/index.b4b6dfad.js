@@ -27577,7 +27577,7 @@ const MovieCard = ({ movie , favoriteMovies , addFavorite , removeFavorite  })=>
                 lineNumber: 12,
                 columnNumber: 7
             }, undefined),
-            favoriteMovies.includes(movie) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+            favoriteMovies.find((m)=>m._id === movie._id) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                 className: "m-2",
                 onClick: removeFavorite,
                 children: "Remove Favorite"
@@ -46398,7 +46398,7 @@ const MovieView = ({ movies , similarMovies , setSimilarMovies , favoriteMovies 
                                     lineNumber: 40,
                                     columnNumber: 13
                                 }, undefined),
-                                favoriteMovies.includes(selectedMovie) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                favoriteMovies.find((m)=>m._id === selectedMovie._id) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                     className: "m-2",
                                     onClick: ()=>removeFavorite(user._id, selectedMovie._id),
                                     children: "Remove Favorite"

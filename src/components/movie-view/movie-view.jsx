@@ -40,7 +40,7 @@ const MovieView = ({
             <Link to={`/`}>
               <Button>Back</Button>
             </Link>
-            {favoriteMovies.includes(selectedMovie) ? (
+            {favoriteMovies.find((m) => m._id === selectedMovie._id) ? (
               <Button
                 className="m-2"
                 onClick={() => removeFavorite(user._id, selectedMovie._id)}

@@ -14,7 +14,7 @@ const MovieCard = ({ movie, favoriteMovies, addFavorite, removeFavorite }) => {
         <Card.Text>{movie.Director.Name}</Card.Text>
       </Card.Body>
 
-      {favoriteMovies.includes(movie) ? (
+      {favoriteMovies.find((m) => m._id === movie._id) ? (
         <Button className="m-2" onClick={removeFavorite}>
           Remove Favorite
         </Button>
