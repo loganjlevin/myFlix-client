@@ -1,14 +1,28 @@
-import PropTypes from "prop-types";
-import { Card } from "react-bootstrap";
+import PropTypes from 'prop-types';
+import { Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const MovieCard = ({ movie, onMovieClick }) => {
+const MovieCard = ({ movie, favoriteMovies, addFavorite, removeFavorite }) => {
   return (
-    <Card className="h-100 bg-secondary text-white" onClick={onMovieClick}>
-      <Card.Img variant="top" src={movie.ImagePath} />
+    <Card className="h-100 bg-secondary text-white">
+      <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+        <Card.Img variant="top" src={movie.ImagePath} />
+      </Link>
+
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
       </Card.Body>
+
+      {favoriteMovies.find((m) => m._id === movie._id) ? (
+        <Button className="m-2" onClick={removeFavorite}>
+          Remove Favorite
+        </Button>
+      ) : (
+        <Button className="m-2" onClick={addFavorite}>
+          Add Favorite
+        </Button>
+      )}
     </Card>
   );
 };
@@ -31,7 +45,7 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string,
     Featured: PropTypes.bool,
   }),
-  onMovieClick: PropTypes.func.isRequired,
+  favoriteMovies: PropTypes.array,
 };
 
 export default MovieCard;

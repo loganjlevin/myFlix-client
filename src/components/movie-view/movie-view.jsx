@@ -1,18 +1,81 @@
-import PropTypes from "prop-types";
-import { Button, Card } from "react-bootstrap";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
+import { Button, Card, Col } from 'react-bootstrap';
+import { useEffect } from 'react';
+import MovieCard from '../movie-card/movie-card';
 
-const MovieView = ({ movie, onBackClick }) => {
+const MovieView = ({
+  movies,
+  similarMovies,
+  setSimilarMovies,
+  favoriteMovies,
+  addFavorite,
+  removeFavorite,
+  user,
+}) => {
+  const { movieId } = useParams();
+  const selectedMovie = movies.find((movie) => movie._id === movieId);
+  useEffect(() => {
+    setSimilarMovies(
+      movies.filter((movie) => {
+        return (
+          movie.Genre.Name === selectedMovie.Genre.Name &&
+          movie.Title !== selectedMovie.Title
+        );
+      })
+    );
+  }, [selectedMovie]);
+
   return (
-    <Card className="bg-secondary text-white mt-5 w-80">
-      <Card.Img variant="top" src={movie.ImagePath} />
-      <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <Card.Text>{movie.Description}</Card.Text>
-        <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
-        <Card.Text>Director: {movie.Director.Name}</Card.Text>
-        <Button onClick={onBackClick}>Back</Button>
-      </Card.Body>
-    </Card>
+    <>
+      <Col md={8}>
+        <Card className="bg-secondary text-white my-4">
+          <Card.Img variant="top" src={selectedMovie.ImagePath} />
+          <Card.Body>
+            <Card.Title>{selectedMovie.Title}</Card.Title>
+            <Card.Text>{selectedMovie.Description}</Card.Text>
+            <Card.Text>Genre: {selectedMovie.Genre.Name}</Card.Text>
+            <Card.Text>Director: {selectedMovie.Director.Name}</Card.Text>
+            <Link to={`/`}>
+              <Button>Back</Button>
+            </Link>
+            {favoriteMovies.find((m) => m._id === selectedMovie._id) ? (
+              <Button
+                className="m-2"
+                onClick={() => removeFavorite(user._id, selectedMovie._id)}
+              >
+                Remove Favorite
+              </Button>
+            ) : (
+              <Button
+                className="m-2"
+                onClick={() => addFavorite(user._id, selectedMovie._id)}
+              >
+                Add Favorite
+              </Button>
+            )}
+          </Card.Body>
+        </Card>
+      </Col>
+      {similarMovies.length !== 0 && (
+        <Col md={12} className="mt-5 text-white">
+          <h2>Similar Movies</h2>
+        </Col>
+      )}
+      {similarMovies.map((movie) => {
+        return (
+          <Col className="mb-4" key={movie._id} md={3}>
+            <MovieCard
+              movie={movie}
+              favoriteMovies={favoriteMovies}
+              addFavorite={() => addFavorite(user._id, movie._id)}
+              removeFavorite={() => removeFavorite(user._id, movie._id)}
+            />
+          </Col>
+        );
+      })}
+    </>
   );
 };
 
@@ -34,7 +97,6 @@ MovieView.propTypes = {
     ImagePath: PropTypes.string.isRequired,
     Featured: PropTypes.bool,
   }),
-  onBackClick: PropTypes.func.isRequired,
 };
 
 export default MovieView;
