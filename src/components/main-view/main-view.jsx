@@ -6,7 +6,7 @@ import SignupView from '../signup-view/signup-view';
 import NavigationBar from '../navigation-bar/navigation-bar';
 import ProfileView from '../profile-view/profile-view';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const MainView = () => {
@@ -17,7 +17,8 @@ const MainView = () => {
   const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
-
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [input, setInput] = useState('');
   useEffect(() => {
     if (!token) {
       return;
@@ -90,6 +91,19 @@ const MainView = () => {
       .catch((error) => console.error(error));
   };
 
+  const filterMovies = (event) => {
+    setInput(event.target.value);
+    const list = movies.filter((movie) => {
+      if (event.target.value === '') return movies;
+      return movie.Title.toLowerCase().includes(
+        event.target.value.toLowerCase()
+      );
+    });
+    setFilteredMovies(list);
+  };
+  const preventSubmit = (event) => {
+    if (event.key === 'Enter') event.preventDefault();
+  };
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -100,6 +114,7 @@ const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
+        filteredMovies={filteredMovies}
       />
 
       <Row className="justify-content-md-center">
@@ -169,18 +184,48 @@ const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
-                      <Col className="my-3" key={movie._id} md={3}>
-                        <MovieCard
-                          movie={movie}
-                          favoriteMovies={favoriteMovies}
-                          addFavorite={() => addFavorite(user._id, movie._id)}
-                          removeFavorite={() =>
-                            removeFavorite(user._id, movie._id)
-                          }
+                    <Col className="my-3" md={12}>
+                      <Form className="d-flex">
+                        <Form.Control
+                          type="search"
+                          placeholder="Search Movies"
+                          value={input}
+                          onKeyDown={preventSubmit}
+                          onChange={filterMovies}
+                          className="me-2 bg-white"
+                          aria-label="Search Movies"
                         />
-                      </Col>
-                    ))}
+                      </Form>
+                    </Col>
+                    {input === ''
+                      ? movies.map((movie) => (
+                          <Col className="my-3" key={movie._id} md={3}>
+                            <MovieCard
+                              movie={movie}
+                              favoriteMovies={favoriteMovies}
+                              addFavorite={() =>
+                                addFavorite(user._id, movie._id)
+                              }
+                              removeFavorite={() =>
+                                removeFavorite(user._id, movie._id)
+                              }
+                            />
+                          </Col>
+                        ))
+                      : filteredMovies.map((movie) => (
+                          <Col className="my-3" key={movie._id} md={3}>
+                            <MovieCard
+                              movie={movie}
+                              favoriteMovies={favoriteMovies}
+                              addFavorite={() =>
+                                addFavorite(user._id, movie._id)
+                              }
+                              removeFavorite={() =>
+                                removeFavorite(user._id, movie._id)
+                              }
+                            />
+                          </Col>
+                        ))}
                   </>
                 )}
               </>
