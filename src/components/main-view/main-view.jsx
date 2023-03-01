@@ -4,6 +4,7 @@ import MovieView from '../movie-view/movie-view';
 import LoginView from '../login-view/login-view';
 import SignupView from '../signup-view/signup-view';
 import NavigationBar from '../navigation-bar/navigation-bar';
+import ProfileView from '../profile-view/profile-view';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
@@ -13,6 +14,7 @@ const MainView = () => {
   const storedToken = JSON.parse(localStorage.getItem('token'));
   const [movies, setMovies] = useState([]);
   const [similarMovies, setSimilarMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
 
@@ -20,6 +22,7 @@ const MainView = () => {
     if (!token) {
       return;
     }
+
     fetch('https://myflix-d2kt.onrender.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -41,6 +44,51 @@ const MainView = () => {
         console.error(error);
       });
   }, [token]);
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    let favorites = movies.filter((movie) =>
+      user.FavoriteMovies.includes(movie._id)
+    );
+    setFavoriteMovies(favorites);
+  }, [token]);
+
+  const addFavorite = (userId, movieId) => {
+    fetch(
+      `https://myflix-d2kt.onrender.com/users/${userId}/movies/${movieId}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then(
+        setFavoriteMovies((oldArray) => [
+          ...oldArray,
+          movies.find((movie) => movie._id === movieId),
+        ])
+      )
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const removeFavorite = (userId, movieId) => {
+    fetch(
+      `https://myflix-d2kt.onrender.com/users/${userId}/movies/${movieId}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then(
+        setFavoriteMovies((oldArray) =>
+          oldArray.filter((movie) => movie._id !== movieId)
+        )
+      )
+      .catch((error) => console.error(error));
+  };
 
   return (
     <BrowserRouter>
@@ -102,6 +150,10 @@ const MainView = () => {
                     movies={movies}
                     similarMovies={similarMovies}
                     setSimilarMovies={setSimilarMovies}
+                    favoriteMovies={favoriteMovies}
+                    addFavorite={addFavorite}
+                    removeFavorite={removeFavorite}
+                    user={user}
                   />
                 )}
               </>
@@ -119,10 +171,38 @@ const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="my-3" key={movie._id} md={3}>
-                        <MovieCard movie={movie} />
+                        <MovieCard
+                          movie={movie}
+                          favoriteMovies={favoriteMovies}
+                          addFavorite={() => addFavorite(user._id, movie._id)}
+                          removeFavorite={() =>
+                            removeFavorite(user._id, movie._id)
+                          }
+                        />
                       </Col>
                     ))}
                   </>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <ProfileView
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                    setToken={setToken}
+                    movies={movies}
+                    favoriteMovies={favoriteMovies}
+                    addFavorite={addFavorite}
+                    removeFavorite={removeFavorite}
+                  />
                 )}
               </>
             }

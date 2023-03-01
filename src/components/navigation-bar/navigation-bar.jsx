@@ -26,6 +26,9 @@ const NavigationBar = ({ user, onLoggedOut }) => {
                 <Nav.Link as={Link} to={`/`}>
                   <Button variant="primary">Home</Button>
                 </Nav.Link>
+                <Nav.Link as={Link} to={`/profile`}>
+                  <Button variant="primary">Profile</Button>
+                </Nav.Link>
                 <Nav.Link onClick={onLoggedOut}>
                   <Button variant="primary">Logout</Button>
                 </Nav.Link>

@@ -1,21 +1,29 @@
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, favoriteMovies, addFavorite, removeFavorite }) => {
   return (
-    <Link
-      to={`/movies/${encodeURIComponent(movie._id)}`}
-      style={{ textDecoration: 'none' }}
-    >
-      <Card className="h-100 bg-secondary text-white">
+    <Card className="h-100 bg-secondary text-white">
+      <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
         <Card.Img variant="top" src={movie.ImagePath} />
-        <Card.Body>
-          <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Director.Name}</Card.Text>
-        </Card.Body>
-      </Card>
-    </Link>
+      </Link>
+
+      <Card.Body>
+        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Text>{movie.Director.Name}</Card.Text>
+      </Card.Body>
+
+      {favoriteMovies.includes(movie) ? (
+        <Button className="m-2" onClick={removeFavorite}>
+          Remove Favorite
+        </Button>
+      ) : (
+        <Button className="m-2" onClick={addFavorite}>
+          Add Favorite
+        </Button>
+      )}
+    </Card>
   );
 };
 
@@ -37,6 +45,7 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string,
     Featured: PropTypes.bool,
   }),
+  favoriteMovies: PropTypes.array,
 };
 
 export default MovieCard;

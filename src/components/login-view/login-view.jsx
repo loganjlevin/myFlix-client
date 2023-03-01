@@ -1,10 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
+import React from 'react';
+import { useState } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 
 const LoginView = ({ onLoggedIn }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,29 +14,29 @@ const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch("https://myflix-d2kt.onrender.com/login", {
-      method: "POST",
+    fetch('https://myflix-d2kt.onrender.com/login', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.user) {
-          localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("token", JSON.stringify(data.token));
+          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('token', JSON.stringify(data.token));
           onLoggedIn(data.user, data.token);
         } else {
-          alert("No such user");
+          alert('No such user');
         }
       })
-      .catch((error) => alert("Something went wrong!"));
+      .catch((error) => alert('Something went wrong!'));
   };
   return (
     <Container className="bg-secondary mt-3 text-white rounded p-3">
       <Form onSubmit={handleSubmit}>
-        Login
+        <h4>Login</h4>
         <Form.Group controlId="formUsername" className="mb-3">
           <Form.Label>Username:</Form.Label>
           <Form.Control

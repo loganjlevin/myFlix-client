@@ -36,7 +36,7 @@ const SignupView = () => {
   return (
     <Container className="bg-secondary mt-3 mb-3 text-white rounded p-3">
       <Form onSubmit={handleSubmit}>
-        Signup
+        <h4>Signup</h4>
         <Form.Group controlId="formUsername" className="mb-3">
           <Form.Label>Username:</Form.Label>
           <Form.Control

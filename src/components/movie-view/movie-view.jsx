@@ -2,13 +2,20 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import { Button, Card, Col } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import MovieCard from '../movie-card/movie-card';
 
-const MovieView = ({ movies, similarMovies, setSimilarMovies }) => {
+const MovieView = ({
+  movies,
+  similarMovies,
+  setSimilarMovies,
+  favoriteMovies,
+  addFavorite,
+  removeFavorite,
+  user,
+}) => {
   const { movieId } = useParams();
   const selectedMovie = movies.find((movie) => movie._id === movieId);
-
   useEffect(() => {
     setSimilarMovies(
       movies.filter((movie) => {
@@ -33,6 +40,21 @@ const MovieView = ({ movies, similarMovies, setSimilarMovies }) => {
             <Link to={`/`}>
               <Button>Back</Button>
             </Link>
+            {favoriteMovies.includes(selectedMovie) ? (
+              <Button
+                className="m-2"
+                onClick={() => removeFavorite(user._id, selectedMovie._id)}
+              >
+                Remove Favorite
+              </Button>
+            ) : (
+              <Button
+                className="m-2"
+                onClick={() => addFavorite(user._id, selectedMovie._id)}
+              >
+                Add Favorite
+              </Button>
+            )}
           </Card.Body>
         </Card>
       </Col>
@@ -44,7 +66,12 @@ const MovieView = ({ movies, similarMovies, setSimilarMovies }) => {
       {similarMovies.map((movie) => {
         return (
           <Col className="mb-4" key={movie._id} md={3}>
-            <MovieCard movie={movie} />
+            <MovieCard
+              movie={movie}
+              favoriteMovies={favoriteMovies}
+              addFavorite={() => addFavorite(user._id, movie._id)}
+              removeFavorite={() => removeFavorite(user._id, movie._id)}
+            />
           </Col>
         );
       })}
