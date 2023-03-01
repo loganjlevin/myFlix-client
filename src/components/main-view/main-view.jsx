@@ -3,29 +3,27 @@ import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import LoginView from '../login-view/login-view';
 import SignupView from '../signup-view/signup-view';
-import {
-  Row,
-  Col,
-  Button,
-  Navbar,
-  Nav,
-  Container,
-  Form,
-} from 'react-bootstrap';
+import NavigationBar from '../navigation-bar/navigation-bar';
+import ProfileView from '../profile-view/profile-view';
+import ScrollToTop from '../scroll-to-top/scroll-to-top';
+import { Row, Col, Form } from 'react-bootstrap';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = JSON.parse(localStorage.getItem('token'));
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [movies, setMovies] = useState([]);
+  const [similarMovies, setSimilarMovies] = useState([]);
+  const [favoriteMovies, setFavoriteMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
   const [token, setToken] = useState(storedToken);
-  const [similarMovies, setSimilarMovies] = useState([]);
-
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [input, setInput] = useState('');
   useEffect(() => {
     if (!token) {
       return;
     }
+
     fetch('https://myflix-d2kt.onrender.com/movies', {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -49,121 +47,214 @@ const MainView = () => {
   }, [token]);
 
   useEffect(() => {
-    if (selectedMovie) {
-      setSimilarMovies(
-        movies.filter((movie) => {
-          return (
-            movie.Genre.Name === selectedMovie.Genre.Name &&
-            movie.Title !== selectedMovie.Title
-          );
-        })
-      );
+    if (!token) {
+      return;
     }
-  }, [selectedMovie]);
+    let favorites = movies.filter((movie) =>
+      user.FavoriteMovies.includes(movie._id)
+    );
+    setFavoriteMovies(favorites);
+  }, [token]);
 
+  const addFavorite = (userId, movieId) => {
+    fetch(
+      `https://myflix-d2kt.onrender.com/users/${userId}/movies/${movieId}`,
+      {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then(
+        setFavoriteMovies((oldArray) => [
+          ...oldArray,
+          movies.find((movie) => movie._id === movieId),
+        ])
+      )
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const removeFavorite = (userId, movieId) => {
+    fetch(
+      `https://myflix-d2kt.onrender.com/users/${userId}/movies/${movieId}`,
+      {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+      .then(
+        setFavoriteMovies((oldArray) =>
+          oldArray.filter((movie) => movie._id !== movieId)
+        )
+      )
+      .catch((error) => console.error(error));
+  };
+
+  const filterMovies = (event) => {
+    setInput(event.target.value);
+    const list = movies.filter((movie) => {
+      if (event.target.value === '') return movies;
+      return movie.Title.toLowerCase().includes(
+        event.target.value.toLowerCase()
+      );
+    });
+    setFilteredMovies(list);
+  };
+  const preventSubmit = (event) => {
+    if (event.key === 'Enter') event.preventDefault();
+  };
   return (
-    <>
-      {/* NAVBAR */}
-      <Navbar bg="primary" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Brand href="#home">MyFlix</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Form inline>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    setSelectedMovie(null);
-                  }}
-                >
-                  Home
-                </Button>
-              </Form>
-            </Nav>
-            {user ? (
-              <Form inline>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    setUser(null);
-                    setToken(null);
-                    localStorage.clear();
-                  }}
-                >
-                  Logout
-                </Button>
-              </Form>
-            ) : (
-              <></>
-            )}
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+    <BrowserRouter>
+      <ScrollToTop />
+      <NavigationBar
+        user={user}
+        onLoggedOut={() => {
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
+        }}
+        filteredMovies={filteredMovies}
+      />
+
       <Row className="justify-content-md-center">
-        {/* LOGIN VIEW */}
-        {!user ? (
-          <Col md={5}>
-            <LoginView
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }}
-            />
-            {/* SINGUP VIEW */}
-            <SignupView />
-          </Col>
-        ) : selectedMovie ? (
-          <>
-            {/* MOVIE VIEW */}
-            <Col md={8}>
-              <MovieView
-                movie={selectedMovie}
-                onBackClick={() => {
-                  setSelectedMovie(null);
-                }}
-              />
-            </Col>
-            <Col md={12} className="mt-5 text-white">
-              <h2>Similar Movies</h2>
-            </Col>
-            {/* SIMILAR MOVIES LIST */}
-            {similarMovies.map((movie) => {
-              return (
-                <Col className="mb-4" key={movie._id} md={3}>
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    onMovieClick={() => {
-                      setSelectedMovie(movie);
-                    }}
+        <Routes>
+          <Route
+            path="/signup"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <SignupView />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                    />
+                  </Col>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/movies/:movieId"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <MovieView
+                    movies={movies}
+                    similarMovies={similarMovies}
+                    setSimilarMovies={setSimilarMovies}
+                    favoriteMovies={favoriteMovies}
+                    addFavorite={addFavorite}
+                    removeFavorite={removeFavorite}
+                    user={user}
                   />
-                </Col>
-              );
-            })}
-          </>
-        ) : movies.length === 0 ? (
-          <div>Movie list is empty!</div>
-        ) : (
-          <>
-            {/* MOVIE LIST */}
-            {movies.map((movie) => {
-              return (
-                <Col className="my-3" key={movie._id} md={3}>
-                  <MovieCard
-                    movie={movie}
-                    onMovieClick={() => {
-                      setSelectedMovie(movie);
-                    }}
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : movies.length === 0 ? (
+                  <Col>The list is empty!</Col>
+                ) : (
+                  <>
+                    <Col className="my-3" md={12}>
+                      <Form className="d-flex">
+                        <Form.Control
+                          type="search"
+                          placeholder="Search Movies"
+                          value={input}
+                          onKeyDown={preventSubmit}
+                          onChange={filterMovies}
+                          className="me-2 bg-white"
+                          aria-label="Search Movies"
+                        />
+                      </Form>
+                    </Col>
+                    {input === ''
+                      ? movies.map((movie) => (
+                          <Col className="my-3" key={movie._id} md={3}>
+                            <MovieCard
+                              movie={movie}
+                              favoriteMovies={favoriteMovies}
+                              addFavorite={() =>
+                                addFavorite(user._id, movie._id)
+                              }
+                              removeFavorite={() =>
+                                removeFavorite(user._id, movie._id)
+                              }
+                            />
+                          </Col>
+                        ))
+                      : filteredMovies.map((movie) => (
+                          <Col className="my-3" key={movie._id} md={3}>
+                            <MovieCard
+                              movie={movie}
+                              favoriteMovies={favoriteMovies}
+                              addFavorite={() =>
+                                addFavorite(user._id, movie._id)
+                              }
+                              removeFavorite={() =>
+                                removeFavorite(user._id, movie._id)
+                              }
+                            />
+                          </Col>
+                        ))}
+                  </>
+                )}
+              </>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <>
+                {!user ? (
+                  <Navigate to="/login" replace />
+                ) : (
+                  <ProfileView
+                    user={user}
+                    token={token}
+                    setUser={setUser}
+                    setToken={setToken}
+                    movies={movies}
+                    favoriteMovies={favoriteMovies}
+                    addFavorite={addFavorite}
+                    removeFavorite={removeFavorite}
                   />
-                </Col>
-              );
-            })}
-            <Col md={12}></Col>
-          </>
-        )}
+                )}
+              </>
+            }
+          />
+        </Routes>
       </Row>
-    </>
+    </BrowserRouter>
   );
 };
 
