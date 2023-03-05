@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-
+import Config from '../../config';
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { API } = Config;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,7 +15,7 @@ const LoginView = ({ onLoggedIn }) => {
       Password: password,
     };
 
-    fetch('https://myflix-d2kt.onrender.com/login', {
+    fetch(`${API}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +32,10 @@ const LoginView = ({ onLoggedIn }) => {
           alert('No such user');
         }
       })
-      .catch((error) => alert('Something went wrong!'));
+      .catch((error) => {
+        alert('Something went wrong!');
+        console.error(error);
+      });
   };
   return (
     <Container className="bg-secondary mt-3 text-white rounded p-3">

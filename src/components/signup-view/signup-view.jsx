@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-
+import Config from '../../config';
 const SignupView = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
-
+  const { API } = Config;
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -17,7 +17,7 @@ const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch('https://myflix-d2kt.onrender.com/users', {
+    fetch(`${API}/users`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

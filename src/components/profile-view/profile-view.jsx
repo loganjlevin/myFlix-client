@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Container, Col } from 'react-bootstrap';
 import MovieCard from '../movie-card/movie-card';
+import Config from '../../config';
 const ProfileView = ({
   user,
   token,
@@ -10,10 +11,11 @@ const ProfileView = ({
   addFavorite,
   removeFavorite,
 }) => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(user.Username);
   const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [birthday, setBirthday] = useState('');
+  const [email, setEmail] = useState(user.Email);
+  const [birthday, setBirthday] = useState(user.Birthday.slice(0, 10));
+  const { API } = Config;
 
   const updateUser = (event) => {
     event.preventDefault();
@@ -25,7 +27,7 @@ const ProfileView = ({
       Birthday: birthday,
     };
 
-    fetch(`https://myflix-d2kt.onrender.com/users/${user._id}`, {
+    fetch(`${API}/users/${user._id}`, {
       method: 'PUT',
       body: JSON.stringify(updatedUser),
       headers: {
@@ -44,7 +46,7 @@ const ProfileView = ({
   };
 
   const deleteUser = () => {
-    fetch(`https://myflix-d2kt.onrender.com/users/${user._id}`, {
+    fetch(`${API}/users/${user._id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,

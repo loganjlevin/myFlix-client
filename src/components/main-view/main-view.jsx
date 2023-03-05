@@ -8,7 +8,7 @@ import ProfileView from '../profile-view/profile-view';
 import ScrollToTop from '../scroll-to-top/scroll-to-top';
 import { Row, Col, Form } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
+import Config from '../../config.js';
 const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
   const storedToken = JSON.parse(localStorage.getItem('token'));
@@ -19,12 +19,13 @@ const MainView = () => {
   const [token, setToken] = useState(storedToken);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [input, setInput] = useState('');
+  const { API } = Config;
+
   useEffect(() => {
     if (!token) {
       return;
     }
-
-    fetch('https://myflix-d2kt.onrender.com/movies', {
+    fetch(`${API}/movies`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
@@ -57,13 +58,10 @@ const MainView = () => {
   }, [token]);
 
   const addFavorite = (userId, movieId) => {
-    fetch(
-      `https://myflix-d2kt.onrender.com/users/${userId}/movies/${movieId}`,
-      {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
+    fetch(`${API}/users/${userId}/movies/${movieId}`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then(
         setFavoriteMovies((oldArray) => [
           ...oldArray,
@@ -76,13 +74,10 @@ const MainView = () => {
   };
 
   const removeFavorite = (userId, movieId) => {
-    fetch(
-      `https://myflix-d2kt.onrender.com/users/${userId}/movies/${movieId}`,
-      {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
+    fetch(`${API}/users/${userId}/movies/${movieId}`, {
+      method: 'DELETE',
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then(
         setFavoriteMovies((oldArray) =>
           oldArray.filter((movie) => movie._id !== movieId)

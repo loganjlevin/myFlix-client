@@ -1,9 +1,7 @@
-import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const NavigationBar = ({ user, onLoggedOut, filteredMovies }) => {
-  let input = '';
-
+const NavigationBar = ({ user, onLoggedOut }) => {
   return (
     <Navbar bg="primary" variant="dark" expand="lg">
       <Container>
